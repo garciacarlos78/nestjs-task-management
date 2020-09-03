@@ -1,3 +1,7 @@
+# General
+Creado para utilizar gestor de paquetes yarn.  
+Colección POSTMAN para probar API: Nestjs-tasks-management.postman_collection.json
+
 # Problemas / Diferencias seguimiento curso
 
 ## Creación ficheros iniciales
