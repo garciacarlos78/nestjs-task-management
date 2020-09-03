@@ -123,6 +123,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get filtered tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/tasks?status=OPEN&search=scri",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "OPEN"
+						},
+						{
+							"key": "search",
+							"value": "scri"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
