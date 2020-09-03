@@ -14,15 +14,15 @@ export class TasksService {
 
     getTaskById(id: string): Task {
         const task = this.tasks.find(task => task.id === id);
-        
+
         if (!task) throw new NotFoundException(`Task with id ${id} not found.`);
-        
+
         return task;
     }
 
-    getFilteredTasks(filterTaskDto:FilterTaskDto) : Task[] {
+    getFilteredTasks(filterTaskDto: FilterTaskDto): Task[] {
 
-        const {status, search} = filterTaskDto;
+        const { status, search } = filterTaskDto;
 
         let tasks = this.getAllTasks();
 
@@ -54,14 +54,13 @@ export class TasksService {
         return task;
     }
 
-    deleteTaskById(id: string): boolean {
+    deleteTaskById(id: string): void {
         const index = this.tasks.findIndex(task => task.id === id);
 
-        if (index === -1) return false;
-        else {
-            this.tasks.splice(index, 1);
-            return true;
-        }
+        if (index === -1)
+            throw new NotFoundException(`Task with id ${id} not found.`);
+
+        this.tasks.splice(index, 1);
     }
 
     updateTaskStatus(id: string, newStatus: TaskStatus): Task {

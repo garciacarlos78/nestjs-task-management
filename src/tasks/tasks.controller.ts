@@ -33,8 +33,8 @@ export class TasksController {
 
     @Delete(':id')
     deleteTaskById(@Param('id') id: string): string {
-        if (this.tasksService.deleteTaskById(id)) return `Task with id ${id} deleted`;
-        else return `Task not found.`;
+        this.tasksService.deleteTaskById(id);
+        return `Task with id ${id} deleted`;
     }
 
     @Patch(':id/status')
