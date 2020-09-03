@@ -99,16 +99,26 @@
 			"request": {
 				"method": "PATCH",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "status",
+							"value": "DONE",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "localhost:3000/tasks/id-0.16157385959663406/OPEN",
+					"raw": "localhost:3000/tasks/id-0.2381936480424022/status",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"tasks",
-						"id-0.16157385959663406",
-						"OPEN"
+						"id-0.2381936480424022",
+						"status"
 					]
 				}
 			},

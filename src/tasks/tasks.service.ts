@@ -39,26 +39,9 @@ export class TasksService {
         }
     }
 
-    updateTaskStatus(id: string, newStatus: string): Task {
-        const task = this.tasks.find(task => task.id === id);
-        if (task) {
-            newStatus = newStatus.toLocaleUpperCase();
-            switch (newStatus) {
-                case 'OPEN':
-                    task.status = TaskStatus.OPEN;
-                    break;
-                case 'IN_PROGRESS':
-                    task.status = TaskStatus.IN_PROGRESS;
-                    break;
-                case 'DONE':
-                    task.status = TaskStatus.DONE;
-                    break;
-                default:
-                    console.log("Status not valid");                    
-            }
-        } else {
-            console.log("Task id not found");
-        }
+    updateTaskStatus(id: string, newStatus: TaskStatus): Task {
+        const task = this.getTaskById(id);
+        task.status = newStatus;
         return task;
     }
 }
