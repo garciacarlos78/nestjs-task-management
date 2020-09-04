@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, Query, UsePipes, ValidationPipe, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch, Query, UsePipes, ValidationPipe, ParseIntPipe, NotFoundException } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { FilterTaskDto } from './dto/filter-task.dto';
@@ -24,7 +24,7 @@ export class TasksController {
     */
 
     @Get(':id')
-    getTaskById(@Param('id', ParseIntPipe) id:number) :Promise<Task> {
+    getTaskById(@Param('id', ParseIntPipe) id: number): Promise<Task> {
         return this.tasksService.getTaskById(id);
     }
 
@@ -35,9 +35,8 @@ export class TasksController {
     }
 
     @Delete(':id')
-    deleteTaskById(@Param('id', ParseIntPipe) id: number): string {
-        this.tasksService.deleteTaskById(id);
-        return `Task with id ${id} deleted`;
+    deleteTaskById(@Param('id', ParseIntPipe) id: number): Promise<string> {
+        return this.tasksService.deleteTaskById(id).then(() => `Task with id ${id} deleted`);
     }
 
     /*
