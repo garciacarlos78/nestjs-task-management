@@ -55,30 +55,11 @@ export class TasksService {
         return this.taskRepository.createTask(createTaskDto);
     }
 
+    deleteTaskById(id: number): void {
+        this.taskRepository.delete(id);
+    }
+
     /*
-    createTask(createTaskDto: CreateTaskDto): Task {
-        const { title, description } = createTaskDto;
-
-        const task: Task = {
-            id: "id-" + Math.random(),
-            title,
-            description,
-            status: TaskStatus.OPEN
-        };
-
-        this.tasks.push(task);
-        return task;
-    }
-
-    deleteTaskById(id: string): void {
-        const index = this.tasks.findIndex(task => task.id === id);
-
-        if (index === -1)
-            throw new NotFoundException(`Task with id ${id} not found.`);
-
-        this.tasks.splice(index, 1);
-    }
-
     updateTaskStatus(id: string, newStatus: TaskStatus): Task {
         const task = this.getTaskById(id);
         task.status = newStatus;
