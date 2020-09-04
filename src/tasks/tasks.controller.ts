@@ -27,15 +27,14 @@ export class TasksController {
     getTaskById(@Param('id', ParseIntPipe) id:number) :Promise<Task> {
         return this.tasksService.getTaskById(id);
     }
-   
-    /*
 
     @Post()
     @UsePipes(ValidationPipe)
-    postTask(@Body() createTaskDto: CreateTaskDto): Task {
+    postTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
         return this.tasksService.createTask(createTaskDto);
     }
 
+    /*
     @Delete(':id')
     deleteTaskById(@Param('id') id: string): string {
         this.tasksService.deleteTaskById(id);
