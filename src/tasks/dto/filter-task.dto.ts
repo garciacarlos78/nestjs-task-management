@@ -1,13 +1,16 @@
 import { IsOptional, IsIn, IsNotEmpty } from 'class-validator';
 import { TaskStatus } from '../task-status.enum';
+import { TaskStatusValidationPipe } from '../pipes/task-status-validation.pipe';
+import { UsePipes } from '@nestjs/common';
 
 export class FilterTaskDto {
     @IsOptional()
+    
     @IsIn([
         TaskStatus.OPEN, 
         TaskStatus.IN_PROGRESS, 
         TaskStatus.DONE])
-    status: TaskStatus;
+        status: TaskStatus;
 
     @IsOptional()
     @IsNotEmpty()
