@@ -33,12 +33,12 @@
 					"urlencoded": [
 						{
 							"key": "title",
-							"value": "Test title",
+							"value": "Develop",
 							"type": "text"
 						},
 						{
 							"key": "description",
-							"value": "Test description",
+							"value": "Develop always",
 							"type": "text"
 						}
 					]
@@ -57,19 +57,19 @@
 			"response": []
 		},
 		{
-			"name": "Gest task by id",
+			"name": "Get task by id",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tasks/id-0.14121974259908043",
+					"raw": "localhost:3000/tasks/2",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"tasks",
-						"id-0.14121974259908043"
+						"2"
 					]
 				}
 			},
@@ -81,14 +81,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tasks/id-0.16157385959663406",
+					"raw": "localhost:3000/tasks/7",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"tasks",
-						"id-0.16157385959663406"
+						"7"
 					]
 				}
 			},
@@ -104,21 +104,21 @@
 					"urlencoded": [
 						{
 							"key": "status",
-							"value": "DONE",
+							"value": "done",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/tasks/id-0.2381936480424022/status",
+					"raw": "localhost:3000/tasks/3/status=OPEN",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"tasks",
-						"id-0.2381936480424022",
-						"status"
+						"3",
+						"status=OPEN"
 					]
 				}
 			},
@@ -130,7 +130,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tasks?status=OPEN&search=scri",
+					"raw": "localhost:3000/tasks?status=OPEN&search=as",
 					"host": [
 						"localhost"
 					],
@@ -145,7 +145,7 @@
 						},
 						{
 							"key": "search",
-							"value": "scri"
+							"value": "as"
 						}
 					]
 				}
