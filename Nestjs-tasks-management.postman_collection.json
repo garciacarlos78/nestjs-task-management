@@ -153,7 +153,7 @@
 			"response": []
 		},
 		{
-			"name": "User sign up",
+			"name": "User sign in",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -181,6 +181,65 @@
 					"path": [
 						"auth",
 						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User sign in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "johndoe",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passW0rd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/auth/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test JWT token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kbUiLCJpYXQiOjE1OTk0OTA3NjYsImV4cCI6MTU5OTQ5NDM2Nn0.HE9AYpG3hREIi_hgZbmBE0aT5dvKm8_kdl9l_elfLas",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/auth/test",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"test"
 					]
 				}
 			},
