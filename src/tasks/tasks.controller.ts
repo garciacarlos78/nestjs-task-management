@@ -5,6 +5,7 @@ import { FilterTaskDto } from './dto/filter-task.dto';
 import { TaskStatusValidationPipe } from './pipes/task-status-validation.pipe';
 import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
+import { FilterTaskDtoStatusValidationPipe } from './pipes/filter-task-dto-status-validations.pipe';
 
 @Controller('tasks')
 export class TasksController {
@@ -13,7 +14,7 @@ export class TasksController {
 
     @Get()
     getTasks(
-        @Query(ValidationPipe) filterTaskDto:FilterTaskDto
+        @Query('filterTaskDto', FilterTaskDtoStatusValidationPipe) filterTaskDto: FilterTaskDto
     ): Promise<Task[]> {
         return this.tasksService.getTasks(filterTaskDto);
     }
