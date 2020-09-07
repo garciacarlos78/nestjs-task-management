@@ -1,20 +1,21 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, Query, UsePipes, ValidationPipe, ParseIntPipe, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch, Query, UsePipes, ValidationPipe, ParseIntPipe, NotFoundException, UseGuards } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { FilterTaskDto } from './dto/filter-task.dto';
 import { TaskStatusValidationPipe } from './pipes/task-status-validation.pipe';
 import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
-import { FilterTaskDtoStatusValidationPipe } from './pipes/filter-task-dto-status-validations.pipe';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('tasks')
+@UseGuards(AuthGuard())
 export class TasksController {
 
     constructor(private tasksService: TasksService) { }
 
     @Get()
     getTasks(
-        @Query('filterTaskDto', FilterTaskDtoStatusValidationPipe) filterTaskDto: FilterTaskDto
+        @Query(ValidationPipe) filterTaskDto: FilterTaskDto
     ): Promise<Task[]> {
         return this.tasksService.getTasks(filterTaskDto);
     }

@@ -5,9 +5,6 @@ export class FilterTaskDtoStatusValidationPipe implements PipeTransform {
 
     transform(value: any) {
 
-        console.log(value);
-        
-
         if (value === undefined) return value;
 
         const { status } = value;

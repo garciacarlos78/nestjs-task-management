@@ -8,6 +8,16 @@
 		{
 			"name": "Get all tasks",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -26,6 +36,16 @@
 		{
 			"name": "Create new task",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -59,17 +79,27 @@
 		{
 			"name": "Get task by id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tasks/2",
+					"raw": "localhost:3000/tasks/9",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"tasks",
-						"2"
+						"9"
 					]
 				}
 			},
@@ -78,17 +108,27 @@
 		{
 			"name": "Delete task by id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tasks/7",
+					"raw": "localhost:3000/tasks/9",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"tasks",
-						"7"
+						"9"
 					]
 				}
 			},
@@ -97,6 +137,16 @@
 		{
 			"name": "Update task status",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PATCH",
 				"header": [],
 				"body": {
@@ -110,7 +160,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/tasks/3/status=OPEN",
+					"raw": "localhost:3000/tasks/3/status",
 					"host": [
 						"localhost"
 					],
@@ -118,7 +168,7 @@
 					"path": [
 						"tasks",
 						"3",
-						"status=OPEN"
+						"status"
 					]
 				}
 			},
@@ -127,10 +177,20 @@
 		{
 			"name": "Get filtered tasks",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tasks?status=OPEN&search=as",
+					"raw": "localhost:3000/tasks?status=OPEN",
 					"host": [
 						"localhost"
 					],
@@ -142,10 +202,6 @@
 						{
 							"key": "status",
 							"value": "OPEN"
-						},
-						{
-							"key": "search",
-							"value": "as"
 						}
 					]
 				}
@@ -167,7 +223,7 @@
 						},
 						{
 							"key": "password",
-							"value": "password",
+							"value": "passW0rd",
 							"type": "text"
 						}
 					]
@@ -227,7 +283,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kbUiLCJpYXQiOjE1OTk0OTA3NjYsImV4cCI6MTU5OTQ5NDM2Nn0.HE9AYpG3hREIi_hgZbmBE0aT5dvKm8_kdl9l_elfLas",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
 						"type": "text"
 					}
 				],
