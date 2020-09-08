@@ -13,7 +13,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
+							"value": "{{user2_token}}",
 							"type": "string"
 						}
 					]
@@ -41,7 +41,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJpYXQiOjE1OTk0OTQ0NzAsImV4cCI6MTU5OTQ5ODA3MH0.dRMT6EaHjnTU0RI_tPP1XoZSFiWY9fN5QwZVOJg_ha8",
+							"value": "{{user2_token}}",
 							"type": "string"
 						}
 					]
@@ -53,12 +53,12 @@
 					"urlencoded": [
 						{
 							"key": "title",
-							"value": "Develop",
+							"value": "User2 Task",
 							"type": "text"
 						},
 						{
 							"key": "description",
-							"value": "Develop always",
+							"value": "Develop often",
 							"type": "text"
 						}
 					]
@@ -209,7 +209,7 @@
 			"response": []
 		},
 		{
-			"name": "User sign in",
+			"name": "User sign up",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -218,7 +218,7 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "johndoe",
+							"value": "user2",
 							"type": "text"
 						},
 						{
@@ -252,7 +252,7 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "johndoe",
+							"value": "user2",
 							"type": "text"
 						},
 						{
