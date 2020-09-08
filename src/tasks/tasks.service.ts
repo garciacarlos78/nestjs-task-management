@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { FilterTaskDto } from './dto/filter-task.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,6 +7,7 @@ import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
 import { DeleteResult } from 'typeorm';
 import { User } from '../auth/user.entity';
+import { GetUser } from 'src/auth/get-user.decorator';
 
 @Injectable()
 export class TasksService {
@@ -22,9 +23,10 @@ export class TasksService {
         return this.taskRepository.getTasks(user, filterTaskDto);
     }
 
-    async getTaskById(id: number): Promise<Task> {
+    async getTaskById(user: User, id: number): Promise<Task> {
         const task = await this.taskRepository.findOne(id);
         if (!task) throw new NotFoundException(`Task with id ${id} not found.`);
+        if (task.userId !== user.id) throw new UnauthorizedException("Bad request");
         return task;
     }
 
@@ -62,8 +64,10 @@ export class TasksService {
     }
 
 
-    async updateTaskStatus(id: number, newStatus: TaskStatus): Promise<Task> {
-        const task = await this.getTaskById(id);
+    async updateTaskStatus(
+        user: User,
+        id: number, newStatus: TaskStatus): Promise<Task> {
+        const task = await this.getTaskById(user, id);
         task.status = newStatus;
         await task.save();
         return task;
