@@ -43,12 +43,12 @@ export class TasksController {
         return this.tasksService.deleteTaskById(id).then(() => `Task with id ${id} deleted`);
     }
 
-    /*
     @Patch(':id/status')
-    updateTask(@Param('id', ParseIntPipe) id: number,
+    updateTask(
+        @GetUser() user:User,
+        @Param('id', ParseIntPipe) id: number,
         @Body('status', TaskStatusValidationPipe) status: TaskStatus
     ): Promise<Task> {
-        return this.tasksService.updateTaskStatus(id, status);
+        return this.tasksService.updateTaskStatus(user, id, status);
     }
-    */
 }
