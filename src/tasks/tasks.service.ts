@@ -6,6 +6,7 @@ import { TaskRepository } from './task.repository';
 import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
 import { DeleteResult } from 'typeorm';
+import { User } from '../auth/user.entity';
 
 @Injectable()
 export class TasksService {
@@ -54,8 +55,8 @@ export class TasksService {
     }
     */
 
-    createTask(createTaskDto: CreateTaskDto): Promise<Task> {
-        return this.taskRepository.createTask(createTaskDto);
+    createTask(user: User, createTaskDto: CreateTaskDto): Promise<Task> {
+        return this.taskRepository.createTask(user, createTaskDto);
     }
 
 
