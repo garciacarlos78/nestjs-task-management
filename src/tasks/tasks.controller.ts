@@ -13,7 +13,7 @@ import { User } from '../auth/user.entity';
 @UseGuards(AuthGuard())
 export class TasksController {
 
-    private logger: Logger = new Logger('TaskController');
+    private logger = new Logger('TaskController');
 
     constructor(private tasksService: TasksService) { }
 
