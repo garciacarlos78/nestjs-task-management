@@ -7,10 +7,13 @@ import { NotFoundException } from '@nestjs/common';
 
 const mockUser = { username: 'Test username', id: 1 };
 const mockTask = { title: 'Task title', description: 'Task description'};
+const mockCreateTaskDto = { title: 'Task title', description: 'Task description'};
 
 const mockTaskRepository = () => ({
     getTasks: jest.fn(),
-    findOne: jest.fn()
+    findOne: jest.fn(),
+    createTask: jest.fn(), 
+    delete: jest.fn()
 });
 
 describe('TasksService tests', () => {
@@ -75,10 +78,50 @@ describe('TasksService tests', () => {
 
             // expects service throws exception
             const exception = new NotFoundException(`Task with id ${id} not found.`);
-            expect(tasksService.getTaskById(mockUser, id)).rejects.toThrow(exception);
-            
+            expect(tasksService.getTaskById(mockUser, id)).rejects.toThrow(exception);            
+        });
+    });
+
+    describe('createTask', () => {
+        it('creates a new task', async () => {
+            // mock repository response            
+            taskRepository.createTask.mockResolvedValue(mockTask);
+
+            // ensure repository's not been called before service's call
+            expect(taskRepository.createTask).not.toBeCalled();
+            // call method
+            const resultTask = await tasksService.createTask(mockUser, mockCreateTaskDto);
+            // ensure repository's method's been called with expected params
+            expect(taskRepository.createTask).toBeCalledWith(mockUser, mockCreateTaskDto);
+            // ensure service's returned task is the same as repositorie's one
+            expect(resultTask).toEqual(mockTask);
+        })        
+    });
+
+    describe('deleteTask', () => {
+        const taskId = 5;
+
+        it('successfully deletes and existing task', async () => {
+            // mock success repository result. It returns an object, we don't mind which, that has the property affected with a value different from 0
+            taskRepository.delete.mockResolvedValue({ affected: 1});
+
+            // make sure repository's not been called before service's been
+            expect(taskRepository.delete).not.toBeCalled();
+            // call the service
+            await tasksService.deleteTaskById(mockUser.id, taskId);
+            // make sure the repository is called with the expected params
+            expect(taskRepository.delete).toBeCalledWith({id: taskId, userId: mockUser.id});
         });
 
+        it('tries to delete a non-existing task', () => {
+            // mock repository result to 0 affected rows
+            taskRepository.delete.mockResolvedValue({affected: 0});
+
+            // define expected exception thrown when repository returns 0 affecte
+            const exception = new NotFoundException(`Task with id ${taskId} not found.`);
+            // call service
+            expect(tasksService.deleteTaskById(mockUser.id, taskId)).rejects.toThrow(exception);
+        });
     });
 });
 
