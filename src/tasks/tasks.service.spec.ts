@@ -7,12 +7,7 @@ import { NotFoundException } from '@nestjs/common';
 import { Task } from './task.entity';
 
 const mockUser = { username: 'Test username', id: 1 };
-const mockTask = { 
-    title: 'Task title', 
-    description: 'Task description',
-    status: 'Task status',
-    save: () => {}
-};
+const mockTask = { title: 'Task title', description: 'Task description'};
 const mockCreateTaskDto = { title: 'Task title', description: 'Task description'};
 
 const mockTaskRepository = () => ({
@@ -132,22 +127,21 @@ describe('TasksService tests', () => {
 
     describe('update task status', () => {
         it('successfully updates task status', async () => {
-            // mock status to update to
-            const newStatus = 'Mock new task status';            
-            mockTask.status = newStatus;
-            // mock taskService.getTaskById, we want it to return an object with the new status
-            tasksService.getTaskById = jest.fn();
-            tasksService.getTaskById.mockResolvedValue(mockTask);
+            const save = jest.fn().mockResolvedValue(true);
 
-            // ensure the mocked method is not called before calling update method
-            expect(tasksService.getTaskById).not.toBeCalled();
-            // call service that we're testing, with the status we want to update to
-            const taskId = 5;
-            const actualReturnTask = await tasksService.updateTaskStatus(mockUser, taskId, newStatus);
-            // ensure the mocked method's been called with the expected params
-            expect(tasksService.getTaskById).toBeCalledWith(mockUser, taskId);
-            // ensure the gotten task has the sent status
-            expect(actualReturnTask.status).toEqual(mockTask.status);
+            tasksService.getTaskById = jest.fn().mockResolvedValue({
+                status: TaskStatus.OPEN,
+                save
+            });
+
+            expect(tasksService.getTaskById).not.toHaveBeenCalled();
+            expect(save).not.toHaveBeenCalled();
+            const newStatus = TaskStatus.DONE;
+            const taskId = 1;
+            const result = await tasksService.updateTaskStatus(mockUser, taskId, newStatus);
+            expect(tasksService.getTaskById).toHaveBeenCalledWith(mockUser, taskId);
+            expect(save).toHaveBeenCalled();
+            expect(result.status).toEqual(newStatus);
         })
     });
 });
