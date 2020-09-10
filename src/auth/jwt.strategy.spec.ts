@@ -2,6 +2,7 @@ import { Test } from "@nestjs/testing";
 import { UserRepository } from './user.repository';
 import { JwtStrategy } from './jwt.strategy';
 import { UnauthorizedException } from '@nestjs/common';
+import { User } from './user.entity';
 
 // create a UserRepository factory. We just need to mock the findOne method
 const mockUserRepository = () => ({
@@ -34,8 +35,9 @@ describe('JwtStrategy test suites', () => {
         // happy path test, user valid
         it('success in user validation', async () => {
             // mock userRepository.findOne to resolve to true (that it, a user is returned)
-            const mockUser = {username:'mock username'};
-            userRepository.findOne.mockResolvedValue(mockUser);
+            const user = new User();
+            user.username = 'test username';
+            userRepository.findOne.mockResolvedValue(user);
 
             // expect userRepository.findOne not to've been called
             expect(userRepository.findOne).not.toHaveBeenCalled();
@@ -44,7 +46,7 @@ describe('JwtStrategy test suites', () => {
             // expect userRepository.findOne have been called with proper parameters
             expect(userRepository.findOne).toHaveBeenCalledWith({ username: payload.username });
             // expect to return gotten used from user repository
-            expect(result).toEqual(mockUser);
+            expect(result).toEqual(user);
         });
 
         // unhappy path test, invalid user
@@ -55,7 +57,7 @@ describe('JwtStrategy test suites', () => {
             // call JwtStrategy.validate with mocked payload
             const result = jwtStrategy.validate(payload);
             // expect result to resolve to UnauthorizedException("Bad request")
-            expect(result).rejects.toThrow(new UnauthorizedException("Bad request"));
+            expect(result).rejects.toThrow(UnauthorizedException);
         });
     });
 });
