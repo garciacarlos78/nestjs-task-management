@@ -4,7 +4,6 @@ import { FilterTaskDto } from './dto/filter-task.dto';
 import { TaskStatus } from './task-status.enum';
 import { TaskRepository } from './task.repository';
 import { NotFoundException } from '@nestjs/common';
-import { Task } from './task.entity';
 
 const mockUser = { username: 'Test username', id: 1 };
 const mockTask = { title: 'Task title', description: 'Task description'};
@@ -145,45 +144,3 @@ describe('TasksService tests', () => {
         })
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// trick
